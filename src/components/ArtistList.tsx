@@ -46,7 +46,6 @@ const styles = StyleSheet.create({
   artistItem: {
     marginBottom: 10,
     borderRadius: 5,
-    elevation: 2, // Add elevation for shadow effect
   },
   artistName: {
     fontSize: 16,

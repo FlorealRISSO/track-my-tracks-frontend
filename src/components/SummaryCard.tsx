@@ -6,26 +6,26 @@ const SummaryCard = ({ timeListened, songCount }) => {
   const theme = useTheme();
 
   return (
-    <Card style={[styles.card]}>
-      <Card.Content>
-        <Text style={[styles.title, { color: theme.colors.onSurface }]}>Daily Summary</Text>
+    <View style={styles.container}>
+      <Text style={[styles.title, { color: theme.colors.onSurface }]}>Daily Summary</Text>
+      <View style={styles.element}>
         <Text style={[styles.text, { color: theme.colors.onSurfaceVariant }]}>
           Time Listened: {timeListened}
         </Text>
         <Text style={[styles.text, { color: theme.colors.onSurfaceVariant }]}>
           Songs Played: {songCount}
         </Text>
-      </Card.Content>
-    </Card>
+      </View>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  card: {
-    padding: 20,
-    borderRadius: 10,
+  container: {
     marginBottom: 20,
-    elevation: 4, // Material Design elevation for shadow effect
+  },
+  element: {
+    marginLeft: 20,
   },
   title: {
     fontSize: 18,

@@ -42,7 +42,6 @@ const styles = StyleSheet.create({
     padding: 10,
     alignItems: 'center',
     borderRadius: 5,
-    elevation: 2, // Add shadow for Android
   },
   albumCover: {
     width: '100%', // Make cover responsive

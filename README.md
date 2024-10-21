@@ -1,53 +1,57 @@
 # Track My Tracks - Frontend
 
-**Track My Tracks** is the frontend web application for the Spotify listening tracker, designed to provide an intuitive user interface for visualizing your listening habits. This web app allows you to access detailed insights into your Spotify usage, including listening history, total listening time, favorite genres, and top artists.
+**Track My Tracks** is the web-based frontend for tracking your Spotify listening habits. This application provides a detailed overview of your listening history and behavior, offering rich visualizations and insights into your Spotify usage, including total listening time, favorite genres, and top artists. Built using modern web technologies, it ensures an engaging user experience across devices.
 
-## Features
+## Docker Setup
 
-- **User-Friendly Interface**: Built with Expo React Native for a responsive and engaging user experience.
-- **Listening History**: View a comprehensive list of songs you've listened to, including timestamps and metadata.
-- **Total Listening Time**: Track the total amount of time you've spent listening to music on Spotify.
-- **Genre and Artist Insights**: Analyze your listening patterns to discover your most-listened-to genres and top artists.
+To build and run the application with Docker, refer to the instructions in the [Track My Tracks - Main Repository](https://github.com/FlorealRISSO/track-my-tracks) for the full setup and configuration.
+
+## Repositories
+
+- **Main**: [Track My Tracks - Main Repository](https://github.com/FlorealRISSO/track-my-tracks)
+- **Frontend**: [Track My Tracks - Frontend GitHub Repository](https://github.com/FlorealRISSO/track-my-tracks)
+- **Backend**: [Track My Tracks - Backend GitHub Repository](https://github.com/FlorealRISSO/track-my-tracks-backend)
+
+## Screenshots
+
+- **Login Page**:
+
+  ![Login Page](./readme-assets/login.png)
+
+- **Home Page**:
+
+  ![Home Page](./readme-assets/home.png)
+
+- **Admin Page**:
+
+  ![Admin Page](./readme-assets/admin1.png)
+
+- **Admin Page (Second View)**:
+
+  ![Admin Page](./readme-assets/admin2.png)
+
+- **Settings Page**:
+
+  ![Settings Page](./readme-assets/settings.png)
+
+## Key Features
+
+- **Intuitive User Interface**: Designed with Expo React Native to offer a seamless, cross-platform user experience.
+- **Listening History**: Dive deep into a list of all the tracks you’ve played on Spotify, along with timestamps and detailed metadata.
+- **Total Listening Time**: Get a complete breakdown of your total listening time over various periods.
+- **Top Genres & Artists**: Analyze your musical preferences with detailed genre and artist insights.
 
 ## Tech Stack
 
-- **Expo React Native**: Provides a cross-platform framework for building the web app.
-- **API Integration**: Connects to the backend API to fetch and display listening data.
-- **TypeScript**: Ensures type safety and improves development efficiency.
-
-## Getting Started
-
-### Prerequisites
-
-- Ensure you have Node.js and npm installed on your machine.
-
-### Installation
-
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/yourusername/track-my-tracks-frontend.git
-   cd track-my-tracks-frontend
-   ```
-
-2. **Install dependencies**:
-   ```bash
-   npm install
-   ```
-
-3. **Environment Variables**: Set up the required environment variables for connecting to your backend API.
-
-4. **Run the application**:
-   ```bash
-   npx expo start
-   ```
-
-This command will start the development server and open the web application in your default browser.
+- **Expo React Native**: A powerful, cross-platform framework that ensures the app runs smoothly on web, mobile, and desktop.
+- **TypeScript**: Adds static typing for increased reliability and productivity during development.
+- **Backend API**: The app connects seamlessly to the backend API ([Track My Tracks Backend](https://github.com/FlorealRISSO/track-my-tracks-backend)) to retrieve real-time Spotify listening data.
 
 ## Usage
 
-- Once the frontend is running, you can log in to view your Spotify listening data.
-- Explore your listening history, total listening time, and insights on genres and artists.
+- Once the app is running, log in with your Spotify account to visualize your listening history.
+- Navigate through different sections like your listening history, total listening time, and insights on your favorite genres and top artists.
 
 ## License
 
-This project is licensed under the MIT License. See the LICENSE file for details.
+This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for details.

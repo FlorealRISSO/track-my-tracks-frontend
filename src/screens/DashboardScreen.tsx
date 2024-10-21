@@ -8,6 +8,7 @@ import SummaryCard from '../components/SummaryCard';
 import GenreChart from '../components/GenreChart';
 import SortedList from '../components/ArtistList';
 import { formatDate } from '../utils/date';
+import { API_URL } from '../api/server';
 
 const cashedData = new Map<string, any>();
 
@@ -16,7 +17,7 @@ const DashboardScreen = () => {
     const [currentDate, setCurrentDate] = useState(new Date());
     const theme = useTheme();
     const navigation = useNavigation();
-    const key = localStorage.getItem('key');
+    const isAdmin = localStorage.getItem('is_admin');
 
     useEffect(() => {
         const today = new Date();
@@ -26,8 +27,9 @@ const DashboardScreen = () => {
         }
 
         const loadDashboardData = async () => {
+            setDashboardData(null);
             const day = formatDate(currentDate);
-            const data = cashedData.get(day) || await fetchDailySummary(key, day);
+            const data = cashedData.get(day) || await fetchDailySummary(day);
             cashedData.set(day, data);
             setDashboardData(data);
         };
@@ -40,12 +42,28 @@ const DashboardScreen = () => {
         setCurrentDate(newDate);
     };
 
+    const logout = () => {
+        localStorage.removeItem('is_admin');
+        fetch(`${API_URL}/logout`, {
+            method: 'POST',
+            credentials: 'include',
+        })
+            .then((response) => {
+                navigation.goBack();
+            })
+            .catch((error) => {
+                console.error('Error during logout:', error);
+            });
+    }
+
     if (!dashboardData) {
         return (
             <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
                 <Appbar.Header>
-                    <Appbar.Action icon="arrow-left" onPress={navigation.goBack} />
+                    <Appbar.Action icon="logout" onPress={logout} />
                     <Appbar.Content title="Dashboard" />
+                    {isAdmin === 'true' && <Appbar.Action icon="cog" onPress={() => navigation.navigate('Admin' as never)} />}
+                    <Appbar.Action icon="key" onPress={() => navigation.navigate('Settings' as never)} />
                 </Appbar.Header>
                 <View style={[styles.loadingContainer, { backgroundColor: theme.colors.background }]}>
                     <ActivityIndicator size="large" color={theme.colors.primary} />
@@ -58,8 +76,10 @@ const DashboardScreen = () => {
     return (
         <SafeAreaView style={[styles.container, { backgroundColor: theme.colors.background }]}>
             <Appbar.Header>
-                <Appbar.Action icon="arrow-left" onPress={navigation.goBack} />
+                <Appbar.Action icon="logout" onPress={logout} />
                 <Appbar.Content title="Dashboard" />
+                {isAdmin === 'true' && <Appbar.Action icon="cog" onPress={() => navigation.navigate('Admin' as never)} />}
+                <Appbar.Action icon="key" onPress={() => navigation.navigate('Settings' as never)} />
             </Appbar.Header>
 
             <View style={styles.dateNavigation}>
@@ -72,10 +92,14 @@ const DashboardScreen = () => {
 
             <ScrollView style={[styles.container, { backgroundColor: theme.colors.background }]}>
                 <View style={styles.content}>
-                    <SummaryCard
-                        timeListened={dashboardData.timeListened}
-                        songCount={dashboardData.songCount}
-                    />
+                    <Card style={styles.card}>
+                        <Card.Content>
+                            <SummaryCard
+                                timeListened={dashboardData.timeListened}
+                                songCount={dashboardData.songCount}
+                            />
+                        </Card.Content>
+                    </Card>
                     <Card style={styles.card}>
                         <Card.Content>
                             <GenreChart genres={dashboardData.genres} />
@@ -107,7 +131,6 @@ const styles = StyleSheet.create({
     card: {
         marginBottom: 20,
         borderRadius: 10,
-        elevation: 4,
     },
     loadingContainer: {
         flex: 1,
